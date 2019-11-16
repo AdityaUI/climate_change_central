@@ -1,3 +1,4 @@
+import 'package:climate_change_central/API/api_client.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -45,6 +46,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  @protected
+  @mustCallSuper
+  void initState(){
+    super.initState();
+    fetchAPIResult("hi");
+  }
 
   GoogleMapController mapController;
 
