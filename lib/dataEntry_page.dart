@@ -3,9 +3,12 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 
 class dataEntry extends StatefulWidget {
+  double houseSize;
+  String state;
+  int time;
 
   @override
-    _dataEntryState createState() => new _dataEntryState();
+    _dataEntryState createState() => new _dataEntryState(houseSize, state, time);
 
 }
 
@@ -27,7 +30,7 @@ class _dataEntryState extends State<dataEntry> {
 
   }
 
-  _dataEntryState(this.houseSize, this.sate, this.time);
+  _dataEntryState(this.houseSize, this.state, this.time);
 
   @override
   Widget build(BuildContext context) {
