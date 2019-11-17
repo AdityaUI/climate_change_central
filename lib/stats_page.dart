@@ -19,51 +19,119 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-      Stack(children: <Widget>[
-
-        AspectRatio(
-        aspectRatio: 1.70,
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(18),
-              ),
-              color: const Color(0xff232d37)),
-          child: Padding(
-            padding: const EdgeInsets.only(
-                right: 18.0, left: 5.0, top: 24, bottom: 5),
-            child: LineChart(
-              showAvg ? avgData() : mainData(),
+    return Scaffold(
+      body: Container(
+        height: 1000,
+        child: ListView(
+          children: <Widget>[
+            Row(
+              children: <Widget>[Text ('   ')],
             ),
-          ),
+            Row(
+                children: <Widget>[Text ('     TEMP: = 75°F       Predicted Energy Con.= 20 KwH',
+                  style: TextStyle(fontWeight: FontWeight.bold),)],
+            ),
+        Row(
+          children: <Widget>[Text ('   ')],
         ),
-      ),
-    SizedBox(
-    width: 60,
-    height: 34,
-    child: FlatButton(
-    onPressed: () {
-    setState(() {
-    showAvg = !showAvg;
-    });
-    },
-    child: Text(
-    'CO2',
-    style: TextStyle(
-    fontSize: 14,
-    color:
-    showAvg ? Colors.red.withOpacity(0.5) : Colors.red),
-    ),
-    ),
-    ),
-    ],
-    ),
-        ],
-      );
+
+            Row(
+              children: <Widget>[Text ('   ')],
+            ),
+
+
+
+            Container(
+              height: 300.0,
+              child: ListView(
+                children: <Widget>[
+
+                  AspectRatio(
+                    aspectRatio: 1.70,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(18),
+                          ),
+                          color: const Color(0xff232d37)),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            right: 18.0, left: 5.0, top: 24, bottom: 5),
+                        child: LineChart(
+                          showAvg ? avgData() : mainData(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 60,
+                    height: 34,
+                    child: FlatButton(
+                      onPressed: () {
+                        setState(() {
+                          showAvg = !showAvg;
+                        });
+                      },
+                      child: Text(
+                        'Avg CO2 Emission is = 23 cubic ft',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color:
+                            showAvg ? Colors.red.withOpacity(0.5) : Colors.red),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              height: 300.0,
+              child: ListView(
+                children: <Widget>[
+
+                  AspectRatio(
+                    aspectRatio: 1.70,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(18),
+                          ),
+                          color: const Color(0xff232d37)),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            right: 18.0, left: 5.0, top: 24, bottom: 5),
+                        child: LineChart(
+                          showAvg ? avgData() : mainData(),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 60,
+                    height: 34,
+                    child: FlatButton(
+                      onPressed: () {
+                        setState(() {
+                          showAvg = !showAvg;
+                        });
+                      },
+                      child: Text(
+                        'Avg Energy Consumption'
+                        ' is = 32 KwH',
+                        style: TextStyle(
+                            fontSize: 14,
+                            color:
+                            showAvg ? Colors.red.withOpacity(0.5) : Colors.red),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+      )
+    );
   }
 
   LineChartData mainData() {
