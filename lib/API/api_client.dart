@@ -34,6 +34,9 @@ Future<List<PollutionResult>> fetchAPIResult(String date, String slat, String el
   }
   print("LIST OF WORDS");
   print(prlist.toString());
+  prlist.sort((a, b) {
+    return a.latitude.compareTo(b.latitude);
+  });
   return prlist;
   //null == no data
 }
