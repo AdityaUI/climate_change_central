@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:climate_change_central/citations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/foundation.dart';
@@ -55,7 +56,6 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
       List<String> line = coordLoc[i].split(new RegExp(" "));
       if (line.length < 4)
         continue;
-      print(line.length);
       lat.putIfAbsent(line[3], () => double.parse(line[1]));
       long.putIfAbsent(line[3], () => double.parse(line[2]));
       if (line[3] == 'Zimbabwe')
@@ -127,6 +127,14 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
     return new Scaffold(
         appBar: new AppBar(
           title: new Text('Renewables Map'),
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.archive), onPressed: () {
+            Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => CitationsPage()),
+            );
+            })
+          ],
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -137,7 +145,7 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
                   initialCameraPosition: CameraPosition(
                       target: LatLng(39.0, -97.0), zoom: 3.25),
                   polygons: Set<Polygon>.of(genPolygons())),
-              flex: 10,
+              flex: 9,
             ),
             Expanded(
               child: Column(
@@ -174,7 +182,9 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
                         text: 'shared by Google',
                         style: new TextStyle(color: Colors.blue, fontSize: 5),
                         recognizer: new TapGestureRecognizer()
-                          ..onTap = () { launch('https://developers.google.com/terms/site-policies');
+                          ..onTap = () {
+                          print("TAP");
+                          launch('https://developers.google.com/terms/site-policies');
                           },
                       ),
                       new TextSpan(
@@ -182,11 +192,15 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
                         style: new TextStyle(color: Colors.black, fontSize: 5),
                       ),
                       new TextSpan(
-                        text: ' Creative Commons 4.0 Attribution License.',
+                        text: ' Creative Commons 4.0 Attribution License',
                         style: new TextStyle(color: Colors.blue, fontSize: 5),
                         recognizer: new TapGestureRecognizer()
                           ..onTap = () { launch('https://creativecommons.org/licenses/by/4.0/');
                           },
+                      ),
+                      new TextSpan(
+                        text: '.',
+                        style: new TextStyle(color: Colors.black, fontSize: 5),
                       ),
                     ]
                   ))
