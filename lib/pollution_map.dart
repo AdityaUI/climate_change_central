@@ -31,6 +31,7 @@ class _PollutionMapState extends State<PollutionMapPage> {
   GoogleMap store = GoogleMap(
     initialCameraPosition:
     CameraPosition(target: LatLng(39.0, -97.0), zoom: 3.25),
+    mapType: MapType.hybrid,
   );
   List<Polygon> ret = new List<Polygon>();
   double year = 1970;
@@ -64,10 +65,10 @@ class _PollutionMapState extends State<PollutionMapPage> {
           fillColor: intToColor(list[i].aqi).withOpacity(0.1)));
     }
     return GoogleMap(
-      mapType: MapType.satellite,
       initialCameraPosition:
       CameraPosition(target: LatLng(39.0, -97.0), zoom: 3.25),
       polygons: Set<Polygon>.of(ret),
+      mapType: MapType.hybrid,
     );
   }
 

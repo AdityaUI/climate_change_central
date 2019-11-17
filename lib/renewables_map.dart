@@ -54,13 +54,10 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
     print("CoordLoc: " + coordLoc.toString());
     for (int i = 1; i < coordLoc.length; i++) {
       List<String> line = coordLoc[i].split(new RegExp(" "));
-      if (line.length < 4)
-        continue;
+      if (line.length < 4) continue;
       lat.putIfAbsent(line[3], () => double.parse(line[1]));
       long.putIfAbsent(line[3], () => double.parse(line[2]));
-      if (line[3] == 'Zimbabwe')
-        break;
-
+      if (line[3] == 'Zimbabwe') break;
     }
   }
 
@@ -68,6 +65,7 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
   GoogleMap store = GoogleMap(
     initialCameraPosition:
         CameraPosition(target: LatLng(39.0, -97.0), zoom: 3.25),
+    mapType: MapType.hybrid,
   );
   List<Polygon> ret = new List<Polygon>();
   double year = 1965;
@@ -86,23 +84,23 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
   List<Polygon> genPolygons() {
     print("PRINTING");
     ret = new List<Polygon>();
-    data[year].forEach((country, index)
-    {
+    data[year].forEach((country, index) {
       double latitude = lat[country];
       double longitude = long[country];
-      if (latitude != null && longitude != null){
-      ret.add(new Polygon(
-          polygonId: PolygonId(country),
-          points: [
-            new LatLng(latitude - 2, longitude - 2),
-            new LatLng(latitude - 2, longitude + 2),
-            new LatLng(latitude + 2, longitude + 2),
-            new LatLng(latitude + 2, longitude - 2),
-          ],
-          strokeWidth: 5,
-          strokeColor: intToColor(index.floor()),
-          fillColor: intToColor(index.floor()).withOpacity(0.1)));
-    }});
+      if (latitude != null && longitude != null) {
+        ret.add(new Polygon(
+            polygonId: PolygonId(country),
+            points: [
+              new LatLng(latitude - 2, longitude - 2),
+              new LatLng(latitude - 2, longitude + 2),
+              new LatLng(latitude + 2, longitude + 2),
+              new LatLng(latitude + 2, longitude - 2),
+            ],
+            strokeWidth: 5,
+            strokeColor: intToColor(index.floor()),
+            fillColor: intToColor(index.floor()).withOpacity(0.1)));
+      }
+    });
     return ret;
   }
 
@@ -128,12 +126,14 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
         appBar: new AppBar(
           title: new Text('Renewables Map'),
           actions: <Widget>[
-            IconButton(icon: Icon(Icons.archive), onPressed: () {
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => CitationsPage()),
-            );
-            })
+            IconButton(
+                icon: Icon(Icons.archive),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CitationsPage()),
+                  );
+                })
           ],
         ),
         body: Column(
@@ -142,9 +142,11 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
           children: <Widget>[
             Expanded(
               child: GoogleMap(
-                  initialCameraPosition: CameraPosition(
-                      target: LatLng(39.0, -97.0), zoom: 3.25),
-                  polygons: Set<Polygon>.of(genPolygons())),
+                initialCameraPosition:
+                    CameraPosition(target: LatLng(39.0, -97.0), zoom: 3.25),
+                polygons: Set<Polygon>.of(genPolygons()),
+                mapType: MapType.hybrid,
+              ),
               flex: 9,
             ),
             Expanded(
@@ -172,38 +174,41 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
                           child: Text('Later'))
                     ],
                   ),
-                  new RichText(text: new TextSpan(
-                    children: [
-                      new TextSpan(
-                        text: 'Portions of this page are modifications based on work created and ',
-                        style: new TextStyle(color: Colors.black, fontSize: 5),
-                      ),
-                      new TextSpan(
-                        text: 'shared by Google',
-                        style: new TextStyle(color: Colors.blue, fontSize: 5),
-                        recognizer: new TapGestureRecognizer()
-                          ..onTap = () {
+                  new RichText(
+                      text: new TextSpan(children: [
+                    new TextSpan(
+                      text:
+                          'Portions of this page are modifications based on work created and ',
+                      style: new TextStyle(color: Colors.black, fontSize: 5),
+                    ),
+                    new TextSpan(
+                      text: 'shared by Google',
+                      style: new TextStyle(color: Colors.blue, fontSize: 5),
+                      recognizer: new TapGestureRecognizer()
+                        ..onTap = () {
                           print("TAP");
-                          launch('https://developers.google.com/terms/site-policies');
-                          },
-                      ),
-                      new TextSpan(
-                        text: ' and used according to terms described in the ',
-                        style: new TextStyle(color: Colors.black, fontSize: 5),
-                      ),
-                      new TextSpan(
-                        text: ' Creative Commons 4.0 Attribution License',
-                        style: new TextStyle(color: Colors.blue, fontSize: 5),
-                        recognizer: new TapGestureRecognizer()
-                          ..onTap = () { launch('https://creativecommons.org/licenses/by/4.0/');
-                          },
-                      ),
-                      new TextSpan(
-                        text: '.',
-                        style: new TextStyle(color: Colors.black, fontSize: 5),
-                      ),
-                    ]
-                  ))
+                          launch(
+                              'https://developers.google.com/terms/site-policies');
+                        },
+                    ),
+                    new TextSpan(
+                      text: ' and used according to terms described in the ',
+                      style: new TextStyle(color: Colors.black, fontSize: 5),
+                    ),
+                    new TextSpan(
+                      text: ' Creative Commons 4.0 Attribution License',
+                      style: new TextStyle(color: Colors.blue, fontSize: 5),
+                      recognizer: new TapGestureRecognizer()
+                        ..onTap = () {
+                          launch(
+                              'https://creativecommons.org/licenses/by/4.0/');
+                        },
+                    ),
+                    new TextSpan(
+                      text: '.',
+                      style: new TextStyle(color: Colors.black, fontSize: 5),
+                    ),
+                  ]))
                 ],
               ),
             ),
