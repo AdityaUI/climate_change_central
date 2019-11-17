@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:climate_change_central/main.dart';
 import 'package:climate_change_central/dataEntry_page.dart';
 import 'package:climate_change_central/stats_page.dart';
+import 'package:climate_change_central/ocean_level_page.dart';
 
 class mapSelect extends StatefulWidget {
   @override
@@ -28,6 +29,10 @@ class _mapSelectState extends State<mapSelect> {
 
   Future navigateToDataEntry(context) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => dataEntry()));
+  }
+
+  Future navigateToWaterLevel(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => oceanLevel()));
   }
 
   @override
@@ -67,6 +72,22 @@ class _mapSelectState extends State<mapSelect> {
                       padding: const EdgeInsets.all(20),
                       onPressed: () {
                         navigateToPollution(context);
+                      }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: RaisedButton(
+                      color: Colors.blueAccent,
+                      child: Text('Water Level Map', style: TextStyle(
+                        color: Colors.white,
+                      ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: const EdgeInsets.all(20),
+                      onPressed: () {
+                        navigateToWaterLevel(context);
                       }),
                 ),
                 Padding(
