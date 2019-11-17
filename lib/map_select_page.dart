@@ -4,6 +4,7 @@ import 'package:climate_change_central/dataEntry_page.dart';
 import 'package:climate_change_central/stats_page.dart';
 import 'package:climate_change_central/ocean_level_page.dart';
 import 'package:climate_change_central/deforestation_page.dart';
+import 'package:climate_change_central/renewables_map.dart';
 
 class mapSelect extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _mapSelectState extends State<mapSelect> {
   }
 
   Future navigateToRenewable(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => mapSelect()));  //renewable instead of mapSelect
+    Navigator.push(context, MaterialPageRoute(builder: (context) => RenewablesMap()));  //renewable instead of mapSelect
   }
 
   Future navigateToStats(context) async {
