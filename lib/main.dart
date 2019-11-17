@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @mustCallSuper
   void initState(){
     super.initState();
-    fetchAPIResult("hi");
+    //fetchAPIResult("hi");
   }
 
   GoogleMapController mapController;
