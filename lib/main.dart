@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:step_slider/step_slider.dart';
 import 'API/api_client.dart';
 
 void main() {
@@ -85,6 +84,21 @@ class _MyHomePageState extends State<MyHomePage> {
 
   double year = 1970;
 
+  void increment() {
+    setState(() {
+      year = year+4;
+      print(year);
+    });
+
+  }
+
+  void decrement() {
+    setState(() {
+      year = year-4;
+      print(year);
+    });
+  }
+
   Widget build(BuildContext context) {
     print("build " + loading.toString());
     return new Scaffold(
@@ -96,8 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Expanded(
-              child: loading
-                  ? Column(
+              child: Column(
                       children: [
                         GoogleMap(
                           initialCameraPosition: CameraPosition(
@@ -106,51 +119,38 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                         CircularProgressIndicator(strokeWidth: 5, backgroundColor: Colors.blue,),
                       ],
-                    )
-                  : GoogleMap(
-                      initialCameraPosition: CameraPosition(
-                          target: LatLng(37.0, -80.0), zoom: 4.0),
-                      polygons: Set<Polygon>.of(ret),
                     ),
               flex: 10,
             ),
             Expanded(
-              child: StepSlider(
-                min: 1970,
-                max: 2016,
-                steps: {
-                  1970,
-                  1972,
-                  1974,
-                  1976,
-                  1978,
-                  1980,
-                  1982,
-                  1984,
-                  1986,
-                  1990,
-                  1992,
-                  1994,
-                  1996,
-                  1998,
-                  2000,
-                  2002,
-                  2004,
-                  2006,
-                  2008,
-                  2010,
-                  2012,
-                  2014,
-                  2016
-                },
-                initialStep: 1970,
-                animCurve: Curves.bounceInOut,
-                animDuration: Duration(seconds: 1),
-                hardSnap: false,
-                onStepChanged: (year) => setVars(year),
-              ),
-            ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                      textColor: Colors.white,
+                      color: Colors.blue,
+                      onPressed: decrement,
+                      child: Text('Before')
+                  ),
+                  Text(
+                    'Year : $year'
+                  ),
+                  FlatButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                      textColor: Colors.white,
+                      color: Colors.blue,
+                      onPressed: increment,
+                      child: Text('Later')
+                  )
+                ],
+            ),),
           ],
-        ));
+        )
+    );
   }
 }
