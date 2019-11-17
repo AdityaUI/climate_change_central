@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 
@@ -11,7 +10,6 @@ class dataEntry extends StatefulWidget {
     _dataEntryState createState() => new _dataEntryState(houseSize, state, time);
 
 }
-
 
 class _dataEntryState extends State<dataEntry> {
 
@@ -43,17 +41,26 @@ class _dataEntryState extends State<dataEntry> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Data Entry'),
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: Colors.blue,
       ),
       body:
       new Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Colors.greenAccent[100], Colors.white
+                ]
+            )
+        ),
         alignment: AlignmentDirectional(0.0, 0.0),
         height: 1000,
         child: ListView(
           children: <Widget>[
 
             SizedBox(
-              height: 150,
+              height: 70,
               width: 360,
             ),
             SizedBox(
@@ -66,6 +73,7 @@ class _dataEntryState extends State<dataEntry> {
                       'What is the size of your house?'
                   ),
                   TextField(
+                    textAlign: TextAlign.center,
                     controller: sizeHouseControl,
                   )
                 ],
@@ -80,6 +88,7 @@ class _dataEntryState extends State<dataEntry> {
                       'What is your gas burner usage?'
                   ),
                   TextField(
+                    textAlign: TextAlign.center,
                     controller: gasburnerControl,
                   )
                 ],
@@ -94,6 +103,7 @@ class _dataEntryState extends State<dataEntry> {
                       'What is your electricity usage?'
                   ),
                   TextField(
+                    textAlign: TextAlign.center,
                     controller: electricityControl,
                   )
                 ],
@@ -122,6 +132,7 @@ class _dataEntryState extends State<dataEntry> {
                       'What long do you use the A.C?'
                   ),
                   TextField(
+                    textAlign: TextAlign.center,
                     controller: ACtimeControl,
                   )
                 ],
@@ -129,14 +140,13 @@ class _dataEntryState extends State<dataEntry> {
             ),
             FlatButton(
               child: Text('Submit'),
-              color: Colors.orangeAccent,
+              color: Colors.blueAccent,
               textColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40.0),
               ),
               onPressed: () => {
-                /*TODO*/
-                //implement submit
+                Navigator.pop(context)
               },
             )
           ],

@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/gestures.dart';
+import 'package:step_slider/step_slider.dart';
 
 class RenewablesMap extends StatelessWidget {
   // This widget is the root of your application.
@@ -31,6 +32,9 @@ class RenewablesMapPage extends StatefulWidget {
 }
 
 class _RenewablesMapState extends State<RenewablesMapPage> {
+
+  double _sliderValue = 1965;
+
   Map<int, Map<String, double>> data = new Map<int, Map<String, double>>();
   Map<String, double> lat = new Map<String, double>();
   Map<String, double> long = new Map<String, double>();
@@ -55,9 +59,13 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
     for (int i = 1; i < coordLoc.length; i++) {
       List<String> line = coordLoc[i].split(new RegExp(" "));
       if (line.length < 4) continue;
-      lat.putIfAbsent(line[3], () => double.parse(line[1]));
-      long.putIfAbsent(line[3], () => double.parse(line[2]));
-      if (line[3] == 'Zimbabwe') break;
+      String name = line[3];
+      for (int i = 4; i < line.length; i++)
+        name += ' ' + line[i];
+      print(name);
+      lat.putIfAbsent(name, () => double.parse(line[1]));
+      long.putIfAbsent(name, () => double.parse(line[2]));
+      if (name == 'Zimbabwe') break;
     }
   }
 
@@ -121,7 +129,9 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
   }
 
   Widget build(BuildContext context) {
-    print("build");
+
+
+
     return new Scaffold(
         appBar: new AppBar(
           title: new Text('Renewables Map'),
@@ -152,27 +162,30 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
             Expanded(
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      FlatButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                          ),
-                          textColor: Colors.white,
-                          color: Colors.blue,
-                          onPressed: decrement,
-                          child: Text('Before')),
-                      Text('Year : ${year.floor()}'),
-                      FlatButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                          ),
-                          textColor: Colors.white,
-                          color: Colors.blue,
-                          onPressed: increment,
-                          child: Text('Later'))
-                    ],
+                  Flexible(
+                    flex: 10,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        StepSlider(
+                            min: 1965,
+                            max: 2016,
+                            steps: {1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016},
+                            onStepChanged: (steps) {
+                              setState(() {
+                                year = steps;
+                              });
+
+                              print(year);
+                            },
+                        )
+                      ],
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                        'Current year:'+year.floor().toString()
+                    ),
                   ),
                   new RichText(
                       text: new TextSpan(children: [

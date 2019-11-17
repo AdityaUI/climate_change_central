@@ -10,9 +10,10 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="climate_change_central"
         android:icon="@mipmap/ic_launcher">
-        //AIzaSyAIVtrfariDjyZCTPyAA_toMZL3mfxDouE
+
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAIVtrfariDjyZCTPyAA_toMZL3mfxDouE"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -32,6 +33,5 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name="com.apptreesoftware.mapview.MapActivity" android:theme="@style/Theme.AppCompat.Light.DarkActionBar"/>
     </application>
 </manifest>
