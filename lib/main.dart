@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:map_view/figure_joint_type.dart';
 import 'package:map_view/map_view.dart';
+import 'package:map_view/polygon.dart';
 
 void main() {
   MapView.setApiKey("AIzaSyAIVtrfariDjyZCTPyAA_toMZL3mfxDouE");
@@ -33,6 +35,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   MapView mapView = new MapView();
+
+  List<Polygon> polygons = <Polygon>[
+    new Polygon("Nice One",
+    <Location>[
+      new Location(29.7604, 95.3698),
+      new Location(31.0, 97.0),
+      new Location(31.5, 96.5),
+      new Location(30.0, 95.5),
+    ], jointType: FigureJointType.round,
+    strokeColor: Colors.lightGreen,
+    fillColor: Colors.blue.withOpacity(0.1))
+  ];
+
   displayMap() {
     mapView.show(new MapOptions(
       mapViewType: MapViewType.normal,
@@ -41,6 +56,8 @@ class _MyHomePageState extends State<MyHomePage> {
       showUserLocation: false,
       title: 'MyMap',
     ));
+
+    mapView.setPolygons(polygons);
   }
 
   Widget build(BuildContext context) {
