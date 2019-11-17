@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:map_view/figure_joint_type.dart';
-import 'package:map_view/map_view.dart';
-import 'package:map_view/polygon.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'API/api_client.dart';
 
 void main() {
-  MapView.setApiKey("AIzaSyAIVtrfariDjyZCTPyAA_toMZL3mfxDouE");
   runApp(new MyApp());
 }
 
@@ -33,10 +30,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  MapView mapView = new MapView();
+  GoogleMapController controller;
+  List<Polygon> ret = new List<Polygon>();
+  String date, slat, elat, slong, elong;
 
-  MaterialColor intToColor(int i)
-  {
+  MaterialColor intToColor(int i) {
     if (i < 20)
       return Colors.green;
     else if (i < 30)
@@ -45,61 +43,65 @@ class _MyHomePageState extends State<MyHomePage> {
       return Colors.red;
   }
 
-
   printAPI(
       String date, String slat, String elat, String slong, String elong) {
-    fetchAPIResult(date, slat, elat, slong, elong).then((list) {
-      print("PRINTING");
-      List<Polygon> ret = new List<Polygon>();
-      for (int i = 0; i < list.length; i++) {
-        if (list[i].aqi == null) continue;
-        ret.add(new Polygon(
-            i.toString(),
-            <Location>[
-              new Location(list[i].latitude - 0.7, list[i].longitude - 0.7),
-              new Location(list[i].latitude - 0.7, list[i].longitude + 0.7),
-              new Location(list[i].latitude + 0.7, list[i].longitude + 0.7),
-              new Location(list[i].latitude + 0.7, list[i].longitude - 0.7),
-            ],
-            jointType: FigureJointType.round,
-            strokeColor: intToColor(list[i].aqi),
-            strokeWidth: 5.0,
-            fillColor: intToColor(list[i].aqi).withOpacity(0.1)));
-      }
-      mapView.show(new MapOptions(
-        mapViewType: MapViewType.normal,
-        initialCameraPosition:
-        new CameraPosition(new Location(37.0, -80.0), 4.0),
-        showUserLocation: false,
-        title: 'MyMap',
-      ));
-      ret.add(new Polygon(
-          (-1).toString(),
-          <Location>[
-            new Location(23.3, -126.0),
-            new Location(23.3, -52.7),
-            new Location(50.0, -52.7),
-            new Location(50.0, -126.0),
-          ],
-          jointType: FigureJointType.round,
-          strokeColor: intToColor(0),
-          strokeWidth: 5.0,
-          fillColor: intToColor(0).withOpacity(0.1)));
-      mapView.setPolygons(ret);
-    }
-    );
+    setState(() {
+      fetchAPIResult(date, slat, elat, slong, elong).then((list) {
+        print("PRINTING");
+        ret = new List<Polygon>();
+        for (int i = 0; i < list.length; i++) {
+          if (list[i].aqi == null) continue;
+          ret.add(new Polygon(
+              polygonId: PolygonId(i.toString()),
+              points: [
+                new LatLng(list[i].latitude - 0.7, list[i].longitude - 0.7),
+                new LatLng(list[i].latitude - 0.7, list[i].longitude + 0.7),
+                new LatLng(list[i].latitude + 0.7, list[i].longitude + 0.7),
+                new LatLng(list[i].latitude + 0.7, list[i].longitude - 0.7),
+              ],
+              strokeWidth: 5,
+              strokeColor: intToColor(list[i].aqi),
+              fillColor: intToColor(list[i].aqi).withOpacity(0.1)));
+        }
+        print("done " + ret.length.toString());
+        build(context);
+      });
+    });
+  }
+
+  setVars() {
+    setState(() {
+      print("set vars");
+      date = "20150102";
+      slat = "23.3";
+      elat = "50.0";
+      slong = "-126.0";
+      elong = "-52.7";
+      printAPI(date, slat, elat, slong, elong);
+    });
   }
 
   Widget build(BuildContext context) {
+    print("build");
     return new Scaffold(
         appBar: new AppBar(
           title: new Text('Google Maps'),
         ),
-        body: new Center(
-          child: new Container(
-            child:
-                new RaisedButton(child: Text('Press'), onPressed: printAPI("20040102", "23.3", "50.0", "-126.0", "-52.7")),
-          ),
+        body: Stack(
+          children: <Widget>[
+            Container(
+                height: MediaQuery.of(context).size.height - 50,
+                width: MediaQuery.of(context).size.width,
+                child: Stack(
+                  children: <Widget>[
+                    GoogleMap(
+                      initialCameraPosition: CameraPosition(
+                          target: LatLng(37.0, -80.0), zoom: 4.0),
+                      polygons: Set<Polygon>.of(ret),
+                    ),
+                  ],
+                ))
+          ],
         ));
   }
 }
