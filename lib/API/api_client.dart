@@ -4,7 +4,7 @@ import 'package:climate_change_central/API/pollution_result.dart';
 import 'package:http/http.dart' as http;
 
 
-Future<List<PollutionResult>> fetchAPIResult(String num) async {
+Future<List<PollutionResult>> fetchAPIResult(String date, String slat, String elat, String slong, String elong) async {
   print("LIUAEGPIUWEHFOIUWEBHFLIUWEHGFPOIUWRHGEO(h");
 
   //{44201,14129,42101,42401,42602,44201,81102,85129,88101}
@@ -13,12 +13,12 @@ Future<List<PollutionResult>> fetchAPIResult(String num) async {
     "email":"prasannsinghal.dev@gmail.com",
     "key":"bolecat77",
     "param":"44201",
-    "bdate":"19951230",
-    "edate":"19951231",
-    "minlat":"23.3",
-    "maxlat":"50",
-    "minlon":"-126.0",
-    "maxlon":"-52.7"
+    "bdate":date,
+    "edate":date,
+    "minlat":slat,
+    "maxlat":elat,
+    "minlon":slong,
+    "maxlon":elong
   });
 
   var response = await http.get(

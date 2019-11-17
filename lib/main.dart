@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:map_view/map_view.dart';
-import 'package:map_view/figure_joint_type.dart';
-import 'package:map_view/polygon.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 
 void main() {
-  MapView.setApiKey("AIzaSyAIVtrfariDjyZCTPyAA_toMZL3mfxDouE");
+
   runApp(new MyApp());
 }
 
@@ -33,51 +32,45 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+
 class _MyHomePageState extends State<MyHomePage> {
-  MapView mapView = new MapView();
-  List<Polygon> polygons = <Polygon> [
-    new Polygon(
-      "Texas",
-      <Location>[
-        new Location(35.22, -101.83),
-        new Location(32.77, -96.79),
-        new Location(29.76, -95.36),
-        new Location(29.42, -98.49),
-      ],
-      jointType: FigureJointType.round,
-      strokeColor: Colors.blue,
-      strokeWidth: 10.0,
-      fillColor: Colors.blue.withOpacity(0.1)
-    )
-  ];
 
-  displayMap() {
+  GoogleMapController controller;
 
-    mapView.show(new MapOptions(
-      mapViewType: MapViewType.normal,
-      initialCameraPosition:
-          new CameraPosition(new Location(29.7604, 95.3698), 4.0),
-      showUserLocation: false,
-      title: 'MyMap',
-
-    ));
-    mapView.onMapTapped.listen((tapped) {
-      mapView.setPolygons(polygons);
-      mapView.zoomToFit(padding: 100);
-    });
-  }
 
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
           title: new Text('Google Maps'),
         ),
-        body: new Center(
-          child: new Container(
-
-            child:
-                new RaisedButton(child: Text('Press'), onPressed: displayMap),
-          ),
-        ));
+        body: Stack(
+          children: <Widget>[
+            Container(
+              height: MediaQuery.of(context).size.height - 50,
+              width: MediaQuery.of(context).size.width,
+              child: GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                      target: LatLng(31.9686, 99.9018),
+                      zoom: 12.0
+                  ),
+                polygons: Set<Polygon>.of(<Polygon>[
+                  Polygon(
+                      polygonId: PolygonId('area'),
+                      points: <LatLng>[LatLng(41.3642 - 0.7, -106.2399 - 0.7),
+                        LatLng(41.3642 - 0.7, -106.2399 + 0.7),
+                        LatLng(41.3642 + 0.7, -106.2399 + 0.7),
+                        LatLng(41.3642 + 0.7, -106.2399 - 0.7),],
+                      geodesic: true,
+                      strokeColor: Colors.blue,
+                      fillColor: Colors.lightBlue.withOpacity(0.1),
+                      visible: true
+                  ),
+                ],
+                ),
+              ),
+            )
+          ],
+        )
+    );
   }
 }
