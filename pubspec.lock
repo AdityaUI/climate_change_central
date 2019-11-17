@@ -46,13 +46,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  google_maps_flutter:
+  map_view:
     dependency: "direct main"
     description:
-      name: google_maps_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.21+11"
+      path: "."
+      ref: HEAD
+      resolved-ref: "5b631c499783936dfc462039274a6f5c59323068"
+      url: "https://github.com/Eimji/flutter_google_map_view"
+    source: git
+    version: "0.0.15"
   matcher:
     dependency: transitive
     description:
@@ -142,6 +144,22 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.6"
+  uri:
+    dependency: transitive
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "04417bbc6b365cfd69a0009dfa4b358432f6e8bd"
+      url: "git://github.com/Eimji/uri.dart"
+    source: git
+    version: "0.11.3"
+  utf:
+    dependency: transitive
+    description:
+      name: utf
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.0+5"
   vector_math:
     dependency: transitive
     description:
@@ -151,4 +169,3 @@ packages:
     version: "2.0.8"
 sdks:
   dart: ">=2.2.2 <3.0.0"
-  flutter: ">=1.5.0 <2.0.0"
