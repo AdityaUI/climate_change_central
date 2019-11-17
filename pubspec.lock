@@ -63,10 +63,12 @@ packages:
   map_view:
     dependency: "direct main"
     description:
-      name: map_view
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.14"
+      path: "."
+      ref: HEAD
+      resolved-ref: "5b631c499783936dfc462039274a6f5c59323068"
+      url: "https://github.com/Eimji/flutter_google_map_view"
+    source: git
+    version: "0.0.15"
   matcher:
     dependency: transitive
     description:
@@ -159,10 +161,12 @@ packages:
   uri:
     dependency: transitive
     description:
-      name: uri
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.11.3+1"
+      path: "."
+      ref: HEAD
+      resolved-ref: "04417bbc6b365cfd69a0009dfa4b358432f6e8bd"
+      url: "git://github.com/Eimji/uri.dart"
+    source: git
+    version: "0.11.3"
   utf:
     dependency: transitive
     description:

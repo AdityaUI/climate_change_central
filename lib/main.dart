@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:map_view/map_view.dart';
+import 'package:map_view/figure_joint_type.dart';
+import 'package:map_view/polygon.dart';
 
 void main() {
   MapView.setApiKey("AIzaSyAIVtrfariDjyZCTPyAA_toMZL3mfxDouE");
@@ -33,14 +35,36 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   MapView mapView = new MapView();
+  List<Polygon> polygons = <Polygon> [
+    new Polygon(
+      "Texas",
+      <Location>[
+        new Location(35.22, -101.83),
+        new Location(32.77, -96.79),
+        new Location(29.76, -95.36),
+        new Location(29.42, -98.49),
+      ],
+      jointType: FigureJointType.round,
+      strokeColor: Colors.blue,
+      strokeWidth: 10.0,
+      fillColor: Colors.blue.withOpacity(0.1)
+    )
+  ];
+
   displayMap() {
+
     mapView.show(new MapOptions(
       mapViewType: MapViewType.normal,
       initialCameraPosition:
-      new CameraPosition(new Location(29.7604, 95.3698), 15.0),
+          new CameraPosition(new Location(29.7604, 95.3698), 4.0),
       showUserLocation: false,
       title: 'MyMap',
+
     ));
+    mapView.onMapTapped.listen((tapped) {
+      mapView.setPolygons(polygons);
+      mapView.zoomToFit(padding: 100);
+    });
   }
 
   Widget build(BuildContext context) {
@@ -50,8 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: new Center(
           child: new Container(
+
             child:
-            new RaisedButton(child: Text('Press'), onPressed: displayMap),
+                new RaisedButton(child: Text('Press'), onPressed: displayMap),
           ),
         ));
   }
