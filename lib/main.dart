@@ -40,16 +40,18 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void increment() {
     setState(() {
-      year = year+4;
-      print(year);
+      if(year < 2020) {
+        year += 4;
+      }
     });
 
   }
 
   void decrement() {
     setState(() {
-      year = year-4;
-      print(year);
+      if(year > 1970) {
+        year -= 4;
+      }
     });
   }
 
