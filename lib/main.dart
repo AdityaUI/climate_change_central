@@ -111,7 +111,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       return Stack(
                         children: <Widget>[
                           store,
-                          CircularProgressIndicator(),
+                          Padding(
+                            padding: EdgeInsets.all(7.0),
+                          child: CircularProgressIndicator(),),
                         ],
                       );
                     case ConnectionState.done:
