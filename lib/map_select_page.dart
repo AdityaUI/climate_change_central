@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:climate_change_central/main.dart';
+import 'package:climate_change_central/pollution_map.dart';
 import 'package:climate_change_central/dataEntry_page.dart';
 import 'package:climate_change_central/stats_page.dart';
 import 'package:climate_change_central/ocean_level_page.dart';
@@ -14,7 +15,7 @@ class mapSelect extends StatefulWidget {
 class _mapSelectState extends State<mapSelect> {
 
   Future navigateToPollution(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => PollutionMap()));
   }
 
   Future navigateToDeforestation(context) async {

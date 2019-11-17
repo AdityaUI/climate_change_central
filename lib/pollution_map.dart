@@ -31,6 +31,7 @@ class _PollutionMapState extends State<PollutionMapPage> {
   GoogleMap store = GoogleMap(
     initialCameraPosition:
     CameraPosition(target: LatLng(39.0, -97.0), zoom: 3.25),
+    mapType: MapType.hybrid,
   );
   List<Polygon> ret = new List<Polygon>();
   double year = 1970;
@@ -64,10 +65,10 @@ class _PollutionMapState extends State<PollutionMapPage> {
           fillColor: intToColor(list[i].aqi).withOpacity(0.1)));
     }
     return GoogleMap(
-      mapType: MapType.satellite,
       initialCameraPosition:
       CameraPosition(target: LatLng(39.0, -97.0), zoom: 3.25),
       polygons: Set<Polygon>.of(ret),
+      mapType: MapType.hybrid,
     );
   }
 
@@ -92,6 +93,7 @@ class _PollutionMapState extends State<PollutionMapPage> {
     return new Scaffold(
         appBar: new AppBar(
           title: new Text('Pollution Map'),
+          backgroundColor: Colors.black87,
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -137,7 +139,7 @@ class _PollutionMapState extends State<PollutionMapPage> {
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                       textColor: Colors.white,
-                      color: Colors.blue,
+                      color: Colors.black87,
                       onPressed: decrement,
                       child: Text('Before')),
                   Text('Year : ${year.floor()}'),
@@ -146,7 +148,7 @@ class _PollutionMapState extends State<PollutionMapPage> {
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                       textColor: Colors.white,
-                      color: Colors.blue,
+                      color: Colors.black87,
                       onPressed: increment,
                       child: Text('Later'))
                 ],
