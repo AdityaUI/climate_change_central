@@ -31,6 +31,7 @@ class _mapSelectState extends State<mapSelect> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orangeAccent,
         title: Text(
           'Map Options'
         ),
@@ -42,7 +43,7 @@ class _mapSelectState extends State<mapSelect> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Colors.lightBlueAccent, Colors.redAccent
+                Colors.red[100], Colors.red[200]
               ]
           )
         ),
