@@ -31,7 +31,7 @@ class _mapSelectState extends State<mapSelect> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: Colors.blue,
         title: Text(
           'Map Options'
         ),
@@ -43,7 +43,7 @@ class _mapSelectState extends State<mapSelect> {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                Colors.red[100], Colors.red[200]
+                Colors.greenAccent[100], Colors.white
               ]
           )
         ),
@@ -53,7 +53,7 @@ class _mapSelectState extends State<mapSelect> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.deepOrangeAccent,
+                      color: Colors.blue,
                       child: Text('Air Pollution Maps', style: TextStyle(
                         color: Colors.white,
                       ),
@@ -69,7 +69,7 @@ class _mapSelectState extends State<mapSelect> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.deepOrangeAccent,
+                      color: Colors.blueAccent,
                       child: Text('Temperature Maps', style: TextStyle(
                         color: Colors.white,
                       ),
@@ -85,7 +85,7 @@ class _mapSelectState extends State<mapSelect> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.deepOrangeAccent,
+                      color: Colors.blueAccent,
                       child: Text('Renewable Maps', style: TextStyle(
                         color: Colors.white,
                       ),
@@ -101,7 +101,7 @@ class _mapSelectState extends State<mapSelect> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.deepOrangeAccent,
+                      color: Colors.blueAccent,
                       child: Text('Data Entry', style: TextStyle(
                         color: Colors.white,
                       ),

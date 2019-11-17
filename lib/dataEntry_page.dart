@@ -12,7 +12,6 @@ class dataEntry extends StatefulWidget {
 
 }
 
-
 class _dataEntryState extends State<dataEntry> {
 
   double houseSize;
@@ -43,7 +42,7 @@ class _dataEntryState extends State<dataEntry> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Data Entry'),
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: Colors.blue,
       ),
       body:
       new Container(
@@ -52,7 +51,7 @@ class _dataEntryState extends State<dataEntry> {
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
                 colors: [
-                  Colors.red[100], Colors.red[200]
+                  Colors.greenAccent[100], Colors.white
                 ]
             )
         ),
@@ -75,6 +74,7 @@ class _dataEntryState extends State<dataEntry> {
                       'What is the size of your house?'
                   ),
                   TextField(
+                    textAlign: TextAlign.center,
                     controller: sizeHouseControl,
                   )
                 ],
@@ -89,6 +89,7 @@ class _dataEntryState extends State<dataEntry> {
                       'What is your gas burner usage?'
                   ),
                   TextField(
+                    textAlign: TextAlign.center,
                     controller: gasburnerControl,
                   )
                 ],
@@ -103,6 +104,7 @@ class _dataEntryState extends State<dataEntry> {
                       'What is your electricity usage?'
                   ),
                   TextField(
+                    textAlign: TextAlign.center,
                     controller: electricityControl,
                   )
                 ],
@@ -131,6 +133,7 @@ class _dataEntryState extends State<dataEntry> {
                       'What long do you use the A.C?'
                   ),
                   TextField(
+                    textAlign: TextAlign.center,
                     controller: ACtimeControl,
                   )
                 ],
@@ -138,15 +141,13 @@ class _dataEntryState extends State<dataEntry> {
             ),
             FlatButton(
               child: Text('Submit'),
-              color: Colors.orangeAccent,
+              color: Colors.blueAccent,
               textColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40.0),
               ),
               onPressed: () => {
                 Navigator.pop(context)
-                /*TODO*/
-                //implement submit
               },
             )
           ],
