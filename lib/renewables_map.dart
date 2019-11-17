@@ -161,7 +161,6 @@ class _RenewablesMapState extends State<RenewablesMapPage> {
                               setState(() {
                                 year = steps;
                               });
-
                               print(year);
                             },
                         )
