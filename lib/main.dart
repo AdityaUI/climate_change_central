@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:step_slider/step_slider.dart';
 
 void main() {
 
@@ -40,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void increment() {
     setState(() {
-      if(year < 2020) {
+      if(year <= 2012) {
         year += 4;
       }
     });
@@ -49,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void decrement() {
     setState(() {
-      if(year > 1970) {
+      if(year >= 1974) {
         year -= 4;
       }
     });
@@ -84,7 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ]),
             ),
-            flex: 10,),
+            flex: 10,
+            ),
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
