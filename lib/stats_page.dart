@@ -42,11 +42,11 @@ class _LineChartSample2State extends State<LineChartSample2> {
               children: <Widget>[Text ('   ')],
             ),
             Row(
-                children: <Widget>[Text ('                         →   TEMP: = 75°F      ',
+                children: <Widget>[Text ('                         →   TEMP: = 69°F      ',
                   style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)],
             ),
             Row(
-              children: <Widget>[Text ('        →   Predicted Consumption:  50KwH    ',
+              children: <Widget>[Text ('        →   Predicted Consumption:  10,909KwH    ',
                 style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)],
             ),
 

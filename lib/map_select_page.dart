@@ -146,9 +146,7 @@ class _mapSelectState extends State<mapSelect> {
                         navigateToDataEntry(context);
                       }),
                 ),
-                Row(
-                  children: <Widget>[Text ('   ')],
-                ),
+
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
