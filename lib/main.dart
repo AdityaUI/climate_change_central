@@ -96,6 +96,7 @@ class _MyHomePageState extends State<MyHomePage> {
     print("build");
     return new Scaffold(
         appBar: new AppBar(
+          backgroundColor: Colors.black87,
           title: new Text('Google Maps'),
         ),
         body: Column(
@@ -142,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                       textColor: Colors.white,
-                      color: Colors.blue,
+                      color: Colors.black87,
                       onPressed: decrement,
                       child: Text('Before')),
                   Text('Year : ${year.floor()}'),
@@ -151,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         borderRadius: BorderRadius.circular(50.0),
                       ),
                       textColor: Colors.white,
-                      color: Colors.blue,
+                      color: Colors.black87,
                       onPressed: increment,
                       child: Text('Later'))
                 ],

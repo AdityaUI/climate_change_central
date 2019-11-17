@@ -41,16 +41,16 @@ class _dataEntryState extends State<dataEntry> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Data Entry'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black87,
       ),
       body:
       new Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
                 colors: [
-                  Colors.greenAccent[100], Colors.white
+                  Colors.greenAccent[100] ,Colors.greenAccent,Colors.blueAccent[100],Colors.lightBlueAccent
                 ]
             )
         ),
@@ -70,7 +70,7 @@ class _dataEntryState extends State<dataEntry> {
 
                 children: <Widget>[
                   Text(
-                      'What is the size of your house?'
+                      '→ What is the size of your house?'
                   ),
                   TextField(
                     textAlign: TextAlign.center,
@@ -85,7 +85,7 @@ class _dataEntryState extends State<dataEntry> {
               child: Column(
                 children: <Widget>[
                   Text(
-                      'What is your gas burner usage?'
+                      '→ What is your gas burner usage?'
                   ),
                   TextField(
                     textAlign: TextAlign.center,
@@ -100,7 +100,7 @@ class _dataEntryState extends State<dataEntry> {
               child: Column(
                 children: <Widget>[
                   Text(
-                      'What is your electricity usage?'
+                      '→ What is your electricity usage?'
                   ),
                   TextField(
                     textAlign: TextAlign.center,
@@ -115,7 +115,7 @@ class _dataEntryState extends State<dataEntry> {
               child: Column(
                 children: <Widget>[
                   Text(
-                      'What is the state you live in?'
+                      '→ What is the state you live in?'
                   ),
                   TextField(
                     controller: stateControl,
@@ -129,7 +129,7 @@ class _dataEntryState extends State<dataEntry> {
               child: Column(
                 children: <Widget>[
                   Text(
-                      'What long do you use the A.C?'
+                      '→ What long do you use the A.C?'
                   ),
                   TextField(
                     textAlign: TextAlign.center,
@@ -140,7 +140,7 @@ class _dataEntryState extends State<dataEntry> {
             ),
             FlatButton(
               child: Text('Submit'),
-              color: Colors.blueAccent,
+              color: Colors.black87,
               textColor: Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40.0),

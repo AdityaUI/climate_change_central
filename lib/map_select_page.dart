@@ -8,6 +8,7 @@ class mapSelect extends StatefulWidget {
     _mapSelectState createState() => new _mapSelectState();
 }
 
+// ignore: camel_case_types
 class _mapSelectState extends State<mapSelect> {
 
   Future navigateToPollution(context) async {
@@ -34,30 +35,36 @@ class _mapSelectState extends State<mapSelect> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.black87,
         title: Text(
-          'Map Options'
+          '  Map Options'
         ),
       ),
       body:
       Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
               colors: [
-                Colors.greenAccent[100], Colors.white
+                Colors.greenAccent[100] ,Colors.greenAccent,Colors.blueAccent[100],Colors.lightBlueAccent
               ]
           )
         ),
         child: (
             ListView(
               children: <Widget>[
+                Row(
+                  children: <Widget>[Text ('   ')],
+                ),
+                Row(
+                  children: <Widget>[Text ('   ')],
+                ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.blue,
-                      child: Text('Air Pollution Maps', style: TextStyle(
+                      color: Colors.black54,
+                      child: Text('→     Air Pollution Map     ←', style: TextStyle(
                         color: Colors.white,
                       ),
                       ),
@@ -69,27 +76,15 @@ class _mapSelectState extends State<mapSelect> {
                         navigateToPollution(context);
                       }),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: RaisedButton(
-                      color: Colors.blueAccent,
-                      child: Text('Temperature Maps', style: TextStyle(
-                        color: Colors.white,
-                      ),
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      padding: const EdgeInsets.all(20),
-                      onPressed: () {
-                        navigateToTemperature(context);
-                      }),
+                Row(
+                  children: <Widget>[Text ('   ')],
                 ),
+
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.blueAccent,
-                      child: Text('Renewable Maps', style: TextStyle(
+                      color: Colors.black54,
+                      child: Text('→     Renewability Map     ←', style: TextStyle(
                         color: Colors.white,
                       ),
                       ),
@@ -101,11 +96,14 @@ class _mapSelectState extends State<mapSelect> {
                         navigateToRenewable(context);
                       }),
                 ),
+                Row(
+                  children: <Widget>[Text ('   ')],
+                ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.blueAccent,
-                      child: Text('Data Entry', style: TextStyle(
+                      color: Colors.black54,
+                      child: Text('→     Data Entry     ←', style: TextStyle(
                         color: Colors.white,
                       ),
                       ),
@@ -117,11 +115,14 @@ class _mapSelectState extends State<mapSelect> {
                         navigateToDataEntry(context);
                       }),
                 ),
+                Row(
+                  children: <Widget>[Text ('   ')],
+                ),
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.blueAccent,
-                      child: Text('Stats', style: TextStyle(
+                      color: Colors.black54,
+                      child: Text('→     Stats     ←', style: TextStyle(
                         color: Colors.white,
                       ),
                       ),
