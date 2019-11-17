@@ -34,9 +34,33 @@ Future<List<PollutionResult>> fetchAPIResult(String date, String slat, String el
   }
   print("LIST OF WORDS");
   print(prlist.toString());
-  prlist.sort((a, b) {
-    return a.latitude.compareTo(b.latitude);
-  });
   return prlist;
-  //null == no data
+
 }
+
+
+Future<double> getTemperature(double lat, double lon) async {
+  print("LIUAEGPIUWEHFOIUWEBHFLIUWEHGFPOIUWRHGEO(h");
+
+  //{44201,14129,42101,42401,42602,44201,81102,85129,88101}
+
+  var uri =  new Uri.https("api.openweathermap.org", "data/2.5/weather/",{
+    "lat":lat.toString(),
+    "lon":lon.toString(),
+    "APPID":'ae9a98e4929496a74ca1a8ba3b01e592'
+  });
+
+  var response = await http.get(
+    uri,
+  );
+
+  print("RESPONSE ARRIVED");
+
+  final responseJson = json.decode(response.body);
+  double a = responseJson["main"]["temp"];
+  print(responseJson.toString());
+  print(a);
+  return a;
+
+}
+

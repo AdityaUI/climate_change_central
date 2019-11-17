@@ -25,11 +25,15 @@ dependencies:
   google_maps_flutter: ^0.5.11
   fl_chart: ^0.4.2
   webview_flutter:
+  step_slider: ^1.0.0+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   http: ^0.12.0+2
+  sqflite: ^1.1.7+1
+  path_provider: ^1.4.0
+  url_launcher: ^5.2.5
 
 dev_dependencies:
   flutter_test:
@@ -38,7 +42,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
 
   uses-material-design: true
 
