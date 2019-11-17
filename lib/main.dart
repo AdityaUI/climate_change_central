@@ -76,13 +76,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   increment() {
     setState(() {
-      year += 4;
+      if(year <= 2014) {
+        year += 4;
+      }
     });
   }
 
   decrement() {
     setState(() {
-      year -= 4;
+      if(year >= 1974) {
+        year -= 4;
+      }
     });
   }
 
