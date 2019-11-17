@@ -1,22 +1,36 @@
 
-class PollutionResult {
-  final double result;
+import 'dart:math';
 
-  PollutionResult({this.result});
+class PollutionResult {
+  final int aqi;
+  final double latitude;
+  final double longitude;
+
+  PollutionResult({this.aqi, this.latitude, this.longitude});
+
+  static int randval(int a){
+    if(a!=null){
+      return a;
+    }
+    Random r = new Random();
+    if(r.nextInt(10)>5){
+      return 10;
+    }
+    return null;
+  }
 
   factory PollutionResult.fromJson(Map<String, dynamic> json) {
     return PollutionResult(
-      result: json['result'],
+      aqi: randval(json['aqi']),
+      latitude: json['latitude'],
+      longitude: json['longitude'],
     );
-  }
-
-  double getResult(){
-    return result;
   }
 
   @override
   String toString() {
     // TODO: implement toString
-    return result.toString();
+    return aqi.toString()+" "+latitude.toString()+" "+longitude.toString();
   }
+
 }
