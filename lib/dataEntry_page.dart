@@ -47,13 +47,22 @@ class _dataEntryState extends State<dataEntry> {
       ),
       body:
       new Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Colors.lightBlueAccent, Colors.redAccent
+                ]
+            )
+        ),
         alignment: AlignmentDirectional(0.0, 0.0),
         height: 1000,
         child: ListView(
           children: <Widget>[
 
             SizedBox(
-              height: 150,
+              height: 70,
               width: 360,
             ),
             SizedBox(
@@ -135,6 +144,7 @@ class _dataEntryState extends State<dataEntry> {
                 borderRadius: BorderRadius.circular(40.0),
               ),
               onPressed: () => {
+                Navigator.pop(context)
                 /*TODO*/
                 //implement submit
               },

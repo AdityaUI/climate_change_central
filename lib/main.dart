@@ -2,6 +2,7 @@ import 'package:climate_change_central/API/pollution_result.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'API/api_client.dart';
+import 'map_select_page.dart';
 
 void main() {
   runApp(new MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: mapSelect(),
     );
   }
 }

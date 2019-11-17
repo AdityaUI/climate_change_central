@@ -24,6 +24,7 @@ dependencies:
       url: https://github.com/Eimji/flutter_google_map_view
   google_maps_flutter: ^0.5.11
   step_slider: 1.0.0+1
+  custom_radio_button:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
