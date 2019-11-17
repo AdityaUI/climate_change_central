@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
         appBar: new AppBar(
           backgroundColor: Colors.black87,
-          title: new Text('Google Maps'),
+          title: new Text('Air Pollution'),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.end,

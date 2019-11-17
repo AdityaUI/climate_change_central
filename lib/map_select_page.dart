@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:climate_change_central/main.dart';
 import 'package:climate_change_central/dataEntry_page.dart';
 import 'package:climate_change_central/stats_page.dart';
+import 'package:climate_change_central/ocean_level_page.dart';
+import 'package:climate_change_central/deforestation_page.dart';
 
 class mapSelect extends StatefulWidget {
   @override
     _mapSelectState createState() => new _mapSelectState();
 }
 
-// ignore: camel_case_types
 class _mapSelectState extends State<mapSelect> {
 
   Future navigateToPollution(context) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
   }
 
-  Future navigateToTemperature(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => mapSelect()));  //temperature instead of mapSelect
+  Future navigateToDeforestation(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => deforestation()));  //temperature instead of mapSelect
   }
 
   Future navigateToRenewable(context) async {
@@ -29,6 +30,10 @@ class _mapSelectState extends State<mapSelect> {
 
   Future navigateToDataEntry(context) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => dataEntry()));
+  }
+
+  Future navigateToWaterLevel(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => oceanLevel()));
   }
 
   @override
@@ -63,8 +68,8 @@ class _mapSelectState extends State<mapSelect> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.black54,
-                      child: Text('→     Air Pollution Map     ←', style: TextStyle(
+                      color: Colors.black87,
+                      child: Text('→   Air Pollution Maps   ←', style: TextStyle(
                         color: Colors.white,
                       ),
                       ),
@@ -76,14 +81,42 @@ class _mapSelectState extends State<mapSelect> {
                         navigateToPollution(context);
                       }),
                 ),
-                Row(
-                  children: <Widget>[Text ('   ')],
-                ),
-
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.black54,
+                      color: Colors.black87,
+                      child: Text('→    Water Level Map   ←', style: TextStyle(
+                        color: Colors.white,
+                      ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: const EdgeInsets.all(20),
+                      onPressed: () {
+                        navigateToWaterLevel(context);
+                      }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: RaisedButton(
+                      color: Colors.black87,
+                      child: Text('→    Deforestation Maps   ←', style: TextStyle(
+                        color: Colors.white,
+                      ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: const EdgeInsets.all(20),
+                      onPressed: () {
+                        navigateToDeforestation(context);
+                      }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: RaisedButton(
+                      color: Colors.black87,
                       child: Text('→     Renewability Map     ←', style: TextStyle(
                         color: Colors.white,
                       ),
@@ -96,13 +129,11 @@ class _mapSelectState extends State<mapSelect> {
                         navigateToRenewable(context);
                       }),
                 ),
-                Row(
-                  children: <Widget>[Text ('   ')],
-                ),
+
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.black54,
+                      color: Colors.black87,
                       child: Text('→     Data Entry     ←', style: TextStyle(
                         color: Colors.white,
                       ),
@@ -121,7 +152,7 @@ class _mapSelectState extends State<mapSelect> {
                 Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
-                      color: Colors.black54,
+                      color: Colors.black87,
                       child: Text('→     Stats     ←', style: TextStyle(
                         color: Colors.white,
                       ),
