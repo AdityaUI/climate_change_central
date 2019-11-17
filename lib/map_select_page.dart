@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:custom_radio_button/custom_radio_button.dart';
-import 'package:custom_radio_button/radio_model.dart';
 import 'package:climate_change_central/main.dart';
 import 'package:climate_change_central/dataEntry_page.dart';
+import 'package:climate_change_central/stats_page.dart';
 
 class mapSelect extends StatefulWidget {
   @override
@@ -21,6 +20,10 @@ class _mapSelectState extends State<mapSelect> {
 
   Future navigateToRenewable(context) async {
     Navigator.push(context, MaterialPageRoute(builder: (context) => mapSelect()));  //renewable instead of mapSelect
+  }
+
+  Future navigateToStats(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => LineChartSample2()));  //renewable instead of mapSelect
   }
 
   Future navigateToDataEntry(context) async {
@@ -112,6 +115,22 @@ class _mapSelectState extends State<mapSelect> {
                       padding: const EdgeInsets.all(20),
                       onPressed: () {
                         navigateToDataEntry(context);
+                      }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: RaisedButton(
+                      color: Colors.blueAccent,
+                      child: Text('Stats', style: TextStyle(
+                        color: Colors.white,
+                      ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      padding: const EdgeInsets.all(20),
+                      onPressed: () {
+                        navigateToStats(context);
                       }),
                 ),
               ],
