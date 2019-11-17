@@ -20,7 +20,21 @@ class _LineChartSample2State extends State<LineChartSample2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+
+      body:
+        new Container(
+        decoration: BoxDecoration(
+        gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+        Colors.greenAccent[100] ,Colors.greenAccent,Colors.blueAccent[100],Colors.lightBlueAccent
+        ]
+    )
+    ),
+    alignment: AlignmentDirectional(0.0, 0.0),
+    height: 1000,
+    child: Container(
         height: 1000,
         child: ListView(
           children: <Widget>[
@@ -28,12 +42,13 @@ class _LineChartSample2State extends State<LineChartSample2> {
               children: <Widget>[Text ('   ')],
             ),
             Row(
-                children: <Widget>[Text ('     TEMP: = 75°F       Predicted Energy Con.= 20 KwH',
-                  style: TextStyle(fontWeight: FontWeight.bold),)],
+                children: <Widget>[Text ('                            TEMP: = 75°F      ',
+                  style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)],
             ),
-        Row(
-          children: <Widget>[Text ('   ')],
-        ),
+            Row(
+              children: <Widget>[Text ('           Predicted Consumption:  50KwH    ',
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),)],
+            ),
 
             Row(
               children: <Widget>[Text ('   ')],
@@ -42,7 +57,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
 
 
             Container(
-              height: 300.0,
+              height: 280.0,
               child: ListView(
                 children: <Widget>[
 
@@ -77,7 +92,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
                         style: TextStyle(
                             fontSize: 14,
                             color:
-                            showAvg ? Colors.red.withOpacity(0.5) : Colors.red),
+                            showAvg ? Colors.black.withOpacity(0.5) : Colors.black, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -121,7 +136,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
                         style: TextStyle(
                             fontSize: 14,
                             color:
-                            showAvg ? Colors.red.withOpacity(0.5) : Colors.red),
+                            showAvg ? Colors.black.withOpacity(0.5) : Colors.black,fontWeight: FontWeight.bold ),
                       ),
                     ),
                   ),
@@ -131,7 +146,7 @@ class _LineChartSample2State extends State<LineChartSample2> {
           ],
         ),
       )
-    );
+    ),);
   }
 
   LineChartData mainData() {
