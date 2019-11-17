@@ -12,10 +12,6 @@ class PollutionResult {
     if(a!=null){
       return a;
     }
-    Random r = new Random();
-    if(r.nextInt(10)>5){
-      return 10;
-    }
     return null;
   }
 

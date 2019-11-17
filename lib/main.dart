@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:map_view/figure_joint_type.dart';
 import 'package:map_view/map_view.dart';
 import 'package:map_view/polygon.dart';
+import 'API/api_client.dart';
 
 void main() {
   MapView.setApiKey("AIzaSyAIVtrfariDjyZCTPyAA_toMZL3mfxDouE");
@@ -15,7 +16,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(),
@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
-
   final String title;
 
   @override
@@ -36,28 +35,59 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   MapView mapView = new MapView();
 
-  List<Polygon> polygons = <Polygon>[
-    new Polygon("Nice One",
-    <Location>[
-      new Location(29.7604, 95.3698),
-      new Location(31.0, 97.0),
-      new Location(31.5, 96.5),
-      new Location(30.0, 95.5),
-    ], jointType: FigureJointType.round,
-    strokeColor: Colors.lightGreen,
-    fillColor: Colors.blue.withOpacity(0.1))
-  ];
+  MaterialColor intToColor(int i)
+  {
+    if (i < 20)
+      return Colors.green;
+    else if (i < 30)
+      return Colors.yellow;
+    else
+      return Colors.red;
+  }
 
-  displayMap() {
-    mapView.show(new MapOptions(
-      mapViewType: MapViewType.normal,
-      initialCameraPosition:
-          new CameraPosition(new Location(29.7604, 95.3698), 4.0),
-      showUserLocation: false,
-      title: 'MyMap',
-    ));
 
-    mapView.setPolygons(polygons);
+  printAPI(
+      String date, String slat, String elat, String slong, String elong) {
+    fetchAPIResult(date, slat, elat, slong, elong).then((list) {
+      print("PRINTING");
+      List<Polygon> ret = new List<Polygon>();
+      for (int i = 0; i < list.length; i++) {
+        if (list[i].aqi == null) continue;
+        ret.add(new Polygon(
+            i.toString(),
+            <Location>[
+              new Location(list[i].latitude - 0.7, list[i].longitude - 0.7),
+              new Location(list[i].latitude - 0.7, list[i].longitude + 0.7),
+              new Location(list[i].latitude + 0.7, list[i].longitude + 0.7),
+              new Location(list[i].latitude + 0.7, list[i].longitude - 0.7),
+            ],
+            jointType: FigureJointType.round,
+            strokeColor: intToColor(list[i].aqi),
+            strokeWidth: 5.0,
+            fillColor: intToColor(list[i].aqi).withOpacity(0.1)));
+      }
+      mapView.show(new MapOptions(
+        mapViewType: MapViewType.normal,
+        initialCameraPosition:
+        new CameraPosition(new Location(37.0, -80.0), 4.0),
+        showUserLocation: false,
+        title: 'MyMap',
+      ));
+      ret.add(new Polygon(
+          (-1).toString(),
+          <Location>[
+            new Location(23.3, -126.0),
+            new Location(23.3, -52.7),
+            new Location(50.0, -52.7),
+            new Location(50.0, -126.0),
+          ],
+          jointType: FigureJointType.round,
+          strokeColor: intToColor(0),
+          strokeWidth: 5.0,
+          fillColor: intToColor(0).withOpacity(0.1)));
+      mapView.setPolygons(ret);
+    }
+    );
   }
 
   Widget build(BuildContext context) {
@@ -68,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: new Center(
           child: new Container(
             child:
-                new RaisedButton(child: Text('Press'), onPressed: displayMap),
+                new RaisedButton(child: Text('Press'), onPressed: printAPI("20040102", "23.3", "50.0", "-126.0", "-52.7")),
           ),
         ));
   }
