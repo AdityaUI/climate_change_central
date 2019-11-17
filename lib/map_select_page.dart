@@ -3,6 +3,7 @@ import 'package:climate_change_central/main.dart';
 import 'package:climate_change_central/dataEntry_page.dart';
 import 'package:climate_change_central/stats_page.dart';
 import 'package:climate_change_central/ocean_level_page.dart';
+import 'package:climate_change_central/deforestation_page.dart';
 
 class mapSelect extends StatefulWidget {
   @override
@@ -15,8 +16,8 @@ class _mapSelectState extends State<mapSelect> {
     Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
   }
 
-  Future navigateToTemperature(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => mapSelect()));  //temperature instead of mapSelect
+  Future navigateToDeforestation(context) async {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => deforestation()));  //temperature instead of mapSelect
   }
 
   Future navigateToRenewable(context) async {
@@ -94,7 +95,7 @@ class _mapSelectState extends State<mapSelect> {
                   padding: const EdgeInsets.all(20.0),
                   child: RaisedButton(
                       color: Colors.blueAccent,
-                      child: Text('Temperature Maps', style: TextStyle(
+                      child: Text('Deforestation Maps', style: TextStyle(
                         color: Colors.white,
                       ),
                       ),
@@ -103,7 +104,7 @@ class _mapSelectState extends State<mapSelect> {
                       ),
                       padding: const EdgeInsets.all(20),
                       onPressed: () {
-                        navigateToTemperature(context);
+                        navigateToDeforestation(context);
                       }),
                 ),
                 Padding(
